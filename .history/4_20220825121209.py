@@ -1,0 +1,1 @@
+sh= input("Enter Hours")
