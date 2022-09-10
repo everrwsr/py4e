@@ -19,14 +19,16 @@ def GetRep():
     response.encoding = "utf-8"
     rep = response.text
     html = etree.HTML(rep)
-    xaufe_title = html.xpath("//body//ul//li/a//@title")[19:-1]
-    xaufe_url = html.xpath("//body//ul//li/a//@href")[20:-1]
+    xaufe_title = html.xpath("//body//ul//li/a//@title")[20:-1]
+    xaufe_url = html.xpath("//body//ul//li/a//@href")[21:-1]
+    # print(xaufe_title)
+    # print(xaufe_url)
     xaufe_url_1 = ["http://www.xaufe.edu.cn/" + str(i) for i in xaufe_url]
     xaufe_message = []
     for i in range(0, len(xaufe_title)):
         xaufe_message.append(
-            "    \n     "+xaufe_title[i]+"   \n  \n   "+xaufe_url_1[i]+"   \n     ")
-    xaufe_message = "   \n   ".join(xaufe_message)
+            "    \n     "+xaufe_title[i]+"   \n   "+xaufe_url_1[i]+"     ")
+    xaufe_message = " \n  ".join(xaufe_message)
     print(xaufe_message)
     return xaufe_message
 
