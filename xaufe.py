@@ -5,10 +5,7 @@ from email.header import Header
 from email.mime.text import MIMEText
 import requests
 from lxml import etree
-
 # me
-
-
 def GetRep():
     # 获取通知
     headers = {
