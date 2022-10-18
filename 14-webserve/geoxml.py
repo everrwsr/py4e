@@ -1,29 +1,20 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import xml.etree.ElementTree as ET
 
-#serviceurl = 'http://maps.googleapis.com/maps/api/geocode/xml?'
+url = 'http://py4e-data.dr-chuck.net/comments_1630197.xml'
 
-while True:
-    url = input('Enter location: ')
-    url = 'http://python-data.dr-chuck.net/comments_42.xml'
-    if len(url) < 1 : break
-    print('Retrieving', url)
-    uh = urllib.urlopen(url)
-    data = uh.read()
-    print('Retrieved',len(data),'characters')
 
-    tree = ET.fromstring(data)
 
-    allNode = tree.findall('.//count')
+print('Retrieving', url)
+uh = urllib.request.urlopen(url)
+data = uh.read()
+print('Retrieved', len(data), 'characters')
+tree = ET.fromstring(data)
 
-    print('count: ', len(allNode))
+comments_node = tree.findall('comments')
+comment_node = comments_node[0].findall('comment')
 
-    sum = 0
-    for node in allNode:
-
-        number = int(node.text)
-        sum = sum + number
-
-    print('sum:', sum)
-
-    break
+total = 0
+for node in comment_node:
+    total = total + int(node.find('count').text)
+print(total)

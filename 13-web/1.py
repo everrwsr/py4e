@@ -1,4 +1,11 @@
-import socket 
-mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysocket.connect(('data.pr4e.org', 80))
-cmd = 'GET http://data.pr4e.org/remeo.txt HTTP'
+from bs4 import BeautifulSoup
+import urllib.request, urllib.parse, urllib.error
+
+url= input(' enter ---')
+html = urllib.request.urlopen(url).read()
+soup = BeautifulSoup(html,'html.parser')
+
+
+tags = soup('li')
+for tag in tags:
+    print(tag.get('href',None))
